@@ -1,18 +1,21 @@
 #!/usr/bin/env python
-#********** Table of Contents *************
-#__Control_Pannel    The User Interface; start here.
-#__Hypnotoad         All Glory to the Hypnotoad
-#__box_styles list   A list of available box styles.
-#__Gallery           A showcase of available box styles
-#__endgallery
-#*******************************************
-#__Art_Code          The code that makes the art
-#__endart
-#__switch            A long switch that interprets box_style
-#__Machinery         Some shady robots
-#__Execution         Where the program execution starts.
-#__TODO_list         A place to plan improvements.
-#__Credits           Who made this thing.
+###############################################################
+# ################### Table of Contents ##################### #
+#                                                             #
+# __Control_Pannel    The User Interface; start here.         #
+# __Hypnotoad         All Glory to the Hypnotoad              #
+# __box_styles list   A list of available box styles.         #
+# __Gallery           A showcase of available box styles      #
+# __endgallery                                                #
+#.............................................................#
+# __Art_Code          The code that makes the art             #
+# __endart                                                    #
+# __switch            A long switch that interprets box_style #
+# __Machinery         Some shady robots                       #
+# __Execution         Where the program execution starts.     #
+# __TODO_list         A place to plan improvements.           #
+# __Credits           Who made this thing.                    #
+###############################################################
 
 ###########################################################################################################################################
 #    ______   ______    __   __   __________  ______     ______    __         ______      ___       __   __   __   __   _______  __       #
@@ -22,43 +25,29 @@
 #  |  `----.|  `--'  | |  |\   |     |  |    |  |\  \-.|  `--'  | |  `---.   |  |     /  _____  \  |  |\   | |  |\   | |  |____ |  `---.  #
 #   \______| \______/  |__| \__|     |__|    | _| `.__| \______/  |______|   | _|    /__/     \__\ |__| \__| |__| \__| |_______||______|  #
 #                                                                                                                                         #
-###########################################################################################################################################
-#__Control_Pannel
+#__Control_Pannel##########################################################################################################################
 
 #Put text here to be made into a box
 longtext = \
 """
-This is a calculator for considering all on-shell decay branching
-fractions of complex decays, such as di-Higgs or Tprime pair produceion. 
-The main calculator, ParticleBranchRatioCounter, will decay all 
-combinations of on shell decay's. 
-
-ParticleBranchRatioCounter takes as input 1 to 4 particle pid's 
-which will be the inital particles to be decayed. 
-
-Each combination of stable particle is supplied to 
-analyser::consider and tallied. This should be the main point 
-of interest for editing since all sorts of things can be tallied about 
-physics siganls. Plug in different analysers using polymorphism 
-to shape "consider" and "report" to the question at hand.
-
-At the end of the calculation, analyser::report gives a report
-of what was tellied. 
-
-SM Particle branching ratios are based on the 2016 PDG. 
-Higgs decays are figured for M(Higgs) = 125.5 GeV 
-
-Created by Dr. Anthony Barker, January 2017. 
+   _____ _____  ______ _____ _____ _______ _____ 
+  / ____|  __ \|  ____|  __ \_   _|__   __/ ____|
+ | |    | |__) | |__  | |  | || |    | | | (___  
+ | |    |  _  /|  __| | |  | || |    | |  \___ \ 
+ | |____| | \ \| |____| |__| || |_   | |  ____) |
+  \_____|_|  \_\______|_____/_____|  |_| |_____/ 
+                                                 
+                                                 
 """
 
-box_style = "fancy2" 		        #This determins which type of box you get. See __box_styles, __Gallery
+box_style = "hashbox" 		#This determins which type of box you get. See __box_styles, __Gallery
 
-centering = "center" 			#opetions: "center"=centered text with padding, "left"=left with padding, "none"
+centering = "left" 			#opetions: "center"=centered text with padding, "left"=left with padding, "none"
 N_tabs_before_comment_mark = 0		#number of tabs in front of everything, including comment marks
 N_quadspaces_before_comment_mark = 0  	#number of 4_space indentings in front of everything, including comment mark
-N_tabs_after_comment_mark = 1		#number of tabs after comment mark, but before the art. Use to create white space to the left of the art.
+N_tabs_after_comment_mark = 0		#number of tabs after comment mark, but before the art. Use to create white space to the left of the art.
 
-comment_style = "Clong" 		#Viable options: "none", "Cshort","Clong", "shell"="python"="pyshort", "pylong", "latex", "custom"
+comment_style = "none" 		#Viable options: "none", "Cshort","Clong", "shell"="python"="pyshort", "pylong", "latex", "custom"
 #for use with "custom":
 custom__comment_mark = "#"      	
 custom__use_short_comments = True 	#false makes it long comment style like /*...*/, short comments makes inline comments like //
@@ -66,27 +55,27 @@ custom__use_short_comments = True 	#false makes it long comment style like /*...
 min_struct_width = 0 			#Minimum values for the width and length of the printed structure. Use these to add white space padding 
 min_struct_length = 0			#or to just make a structure the size you want.
 
-################################################################################################################################################
-##             ,'``.._   ,'``.
-##            :,--._:)\,:,._,.:                Hypnotoad wants you to check out Patrick Gillespie's ASCII Art Generator 
-##            :`--,''   :`...';\             http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
-##             `,'       `---'  `.                                 All Glory to the Hypnotoad!
-##             /                 :
-##            /                   \
-##          ,'                     :\.___,-.
-##         `...,---'``````-..._    |:       \
-##           (                 )   ;:    )   \  _,-.
-##            `.              (   //          `'    \
-##             :               `.//  )      )     , ;
-##           ,-|`.            _,'/       )    ) ,' ,'
-##          (  :`.`-..____..=:.-':     .     _,' ,'
-##           `,'\ ``--....-)='    `._,  \  ,') _ '``._
-##        _.-/ _ `.       (_)      /     )' ; / \ \`-.'
-##       `--(   `-:`.     `' ___..'  _,-'   |/   `.)
-##           `-. `.`.``-----``--,  .'
-##             |/`.\`'        ,',');      
-##                 `         (/  (/
-##__Hypnotoad###################################################################################################################################
+####################################################################################################################################
+##             ,'``.._   ,'``.                                                                                                    ##
+##            :,--._:)\,:,._,.:                Hypnotoad wants you to check out Patrick Gillespie's ASCII Art Generator           ## 
+##            :`--,''   :`...';\             http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20         ##
+##             `,'       `---'  `.                                 All Glory to the Hypnotoad!                                    ##
+##             /                 :                                                                                                ##
+##            /                   \                                                                                               ##
+##          ,'                     :\.___,-.                                                                                      ##
+##         `...,---'``````-..._    |:       \                                                                                     ##
+##           (                 )   ;:    )   \  _,-.                                                                              ##
+##            `.              (   //          `'    \                                                                             ##
+##             :               `.//  )      )     , ;                                                                             ##
+##           ,-|`.            _,'/       )    ) ,' ,'                                                                             ##
+##          (  :`.`-..____..=:.-':     .     _,' ,'                                                                               ##
+##           `,'\ ``--....-)='    `._,  \  ,') _ '``._                                                                            ##
+##        _.-/ _ `.       (_)      /     )' ; / \ \`-.'                                                                           ##
+##       `--(   `-:`.     `' ___..'  _,-'   |/   `.)                                                                              ##
+##           `-. `.`.``-----``--,  .'                                                                                             ##
+##             |/`.\`'        ,',');                                                                                              ##
+##                 `         (/  (/                                                                                               ##
+##__Hypnotoad#######################################################################################################################
 
 #Viable __box_styles 
 "none"	 			#use this to put comment marks in front of text. No art is made.
@@ -216,7 +205,7 @@ centering_dict = {"center":1, "left":0, "none":2}
 	############################################################	  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	######################################################################################
-	################################ This is a #hashfiled ################################
+	################################ This is a #hashfield ################################
 	################## Ideal for python, shell scripting, and barriers ###################
 	######################################################################################
 
@@ -429,8 +418,7 @@ centering_dict = {"center":1, "left":0, "none":2}
 #  |  |  |  |  /  _____  \ |  `----.|  |  |  | |  | |  |\   | |  |____ |  |\  \-.   |  |      #
 #  |__|  |__| /__/     \__\ \______||__|  |__| |__| |__| \__| |_______|| _| `.__|   |__|      #
 #                                                                                             #
-###############################################################################################
-#__Machinery
+#__Machinery###################################################################################
 
 import os,sys
 import string
@@ -673,8 +661,7 @@ class simple_box(box):
 #   /  _____  \  |  |\  \-.   |  |       |  `----.|  `--'  | |  '--'  ||  |____   #
 #  /__/     \__\ | _| `.__|   |__|        \______| \______/  |_______/ |_______|  #
 #                                                                                 #
-###################################################################################
-#__Art_Code
+#__Art_Code########################################################################
 
 def build_textbox_single_element(text, center_text,min_struct_width, min_struct_length, ulcorner, fill_char = ' '): 
 	box_obj = simple_box()
@@ -1242,8 +1229,7 @@ def build_textbox_fancy3(text, center_text,min_struct_length): #fancy3
 #  .--)   |    \    /\    /    |  |     |  |    |  `----.|  |  |  |  #
 #  |_____/      \__/  \__/     |__|     |__|     \______||__|  |__|  #
 #                                                                    #
-######################################################################
-#__switch
+#__switch#############################################################
 def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, indenting_string, min_struct_width, min_struct_length):
 	#the main UI function.
 	#will take in a int box_style indicating which type of box you want, a string for a comment mark,
@@ -1318,7 +1304,7 @@ def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, 
 	elif box_style == "fancy3":
 		text_box = build_textbox_fancy3(text,center_text,min_struct_length)
 	else: 
-		print "Error! I don't recognise box_name ", box_name
+		print "Error! I don't recognise box_name ", box_style
 		return
 	#append comment marks in front of it
 	add_comments(text_box, comment_mark, True_short__False_long)
@@ -1333,9 +1319,7 @@ def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, 
 #  |  |___  /  .  \  |  |____ |  `----.|  `--'  |     |  |    |  | |  `--'  | |  |\   |  #
 #  |______|/__/ \__\ |_______| \______| \______/      |__|    |__|  \______/  |__| \__|  #
 #                                                                                        #
-##########################################################################################
-#__Execution
-
+#__Execution##############################################################################
 
 #[comment mark, True = use short comment; False = use long comments
 comment_mark_dict = {\
@@ -1358,15 +1342,30 @@ indenting_string = N_tabs_before_comment_mark*'\t' + N_quadspaces_before_comment
 #make and print the box
 printbox(get_box(box_style,comment_mark, use_short_comments, center_text, text_list,  indenting_string, min_struct_width, min_struct_length))
 
-##########################################################################################
-#__TODO_list
-# --> Enable this to accept an input file.
-# --> Make the Table of Contents more descriptive and put it in a box.
-# --> The Beginning is needs more art.
-# --> Add more art, particularly from /Users/madoline/Documents/Code/Tools/ascii.h
+###################################################################
+#   _______ ____  _____   ____       _      _____  _____ _______  #
+#  |__   __/ __ \|  __ \ / __ \     | |    |_   _|/ ____|__   __| #
+#     | | | |  | | |  | | |  | |    | |      | | | (___    | |    #
+#     | | | |  | | |  | | |  | |    | |      | |  \___ \   | |    #
+#     | | | |__| | |__| | |__| |    | |____ _| |_ ____) |  | |    #
+#     |_|  \____/|_____/ \____/     |______|_____|_____/   |_|    #
+#                                                                 #
+#__TODO_list#######################################################
 
-##########################################################################################
-#__Credits
+# --> Enable this to accept an input file.
+# --> The Beginning is needs more art.
+# --> Add more art, particularly from Code/Tools/ascii.h
+# --> Write more headers in big font 
+
+#####################################################
+#    _____ _____  ______ _____ _____ _______ _____  #
+#   / ____|  __ \|  ____|  __ \_   _|__   __/ ____| #
+#  | |    | |__) | |__  | |  | || |    | | | (___   #
+#  | |    |  _  /|  __| | |  | || |    | |  \___ \  #
+#  | |____| | \ \| |____| |__| || |_   | |  ____) | #
+#   \_____|_|  \_\______|_____/_____|  |_| |_____/  #
+#                                                   #
+#__Credits###########################################
 #
 #             ^+xw*"""^q_  0 p" F  F _F  p^^"___jM   j  F              F
 #               _,,__   q x" [  F J_ J  P  w""""_  _,"  9  _m^`"*____x"    _____
