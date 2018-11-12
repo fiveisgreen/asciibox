@@ -27,30 +27,25 @@
 #                                                                                                                                         #
 #__Control_Pannel##########################################################################################################################
 
+box_style = "starfield" 		#This determines which type of box you get. See __box_styles, __Gallery
+
 #Put text here to be made into a box
 longtext = \
 """
-  ____  ____  ______         __   ___   ___      ___ 
- /    ||    \|      |       /  ] /   \ |   \    /  _]
-|  o  ||  D  )      |      /  / |     ||    \  /  [_ 
-|     ||    /|_|  |_|     /  /  |  O  ||  D  ||    _]
-|  _  ||    \  |  |      /   \_ |     ||     ||   [_ 
-|  |  ||  .  \ |  |      \     ||     ||     ||     |
-|__|__||__|\_| |__|       \____| \___/ |_____||_____|
-                                                     
+Insert here the text that you want 
+made into an artistic text box
 """
 
-box_style = "duckbox" 		#This determines which type of box you get. See __box_styles, __Gallery
-
 centering = "center" 			#options: "center"=centered text with padding, "left"=left with padding, "none"
+
+comment_style = "python" 		#Viable options: "none", "Cshort"=//, "Clong"=/*...*/, "shell"="python"="pyshort"=#, "pylong"=tripple quotes, "latex"=%, "custom"
+##for use with "custom":##
+custom__comment_mark = "#"      	
+custom__use_short_comments = True 	#false sets long comment style like /*...*/, true sets inline comments like // in C, or # in python. 
+
 N_tabs_before_comment_mark = 0		#number of tabs in front of everything, including comment marks
 N_quadspaces_before_comment_mark = 0  	#number of 4_space indenting in front of everything, including comment mark
 N_tabs_after_comment_mark = 1		#number of tabs after comment mark, but before the art. Use to create white space to the left of the art.
-
-comment_style = "python" 		#Viable options: "none", "Cshort","Clong", "shell"="python"="pyshort", "pylong", "latex", "custom"
-#for use with "custom":
-custom__comment_mark = "#"      	
-custom__use_short_comments = True 	#false makes it long comment style like /*...*/, short comments makes inline comments like //
 
 min_struct_width = 68 			#Minimum values for the width and length of the printed structure. Use these to add white space padding 
 min_struct_length = 0			#or to just make a structure the size you want.
@@ -1255,6 +1250,7 @@ def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, 
 	#we expect the build_textbox family of functions to turn the string into an array of strings of pretty text boxes.
 	text_box = [""]
 	do_add_comment_mark = True
+	box_style = box_style.strip("#") #in case the user forgets and puts in the hash.
 	#get the main textbox
 	if box_style == "none":
 		text_box = text
