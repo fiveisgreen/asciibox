@@ -1277,9 +1277,7 @@ def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, 
 		text_box = build_textbox_starfield(text,center_text,min_struct_width, min_struct_length)
 	elif box_style == "gingerbread":
 		text_box = build_textbox_gingerbread(text,center_text,min_struct_width, min_struct_length)
-	elif box_style == "ducks":
-		text_box = build_textbox_ducks(text,center_text,min_struct_width, min_struct_length)
-	elif box_style == "duckbox":
+	elif box_style == "ducks" or box_style == "duckbox":
 		text_box = build_textbox_ducks(text,center_text,min_struct_width, min_struct_length)
 	elif box_style == "bracketbox":
 		text_box = build_textbox_bracketbox(text,center_text,min_struct_width, min_struct_length)
@@ -1305,7 +1303,7 @@ def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, 
 		text_box = build_textbox_hearye(text,center_text,min_struct_width, min_struct_length)
 	elif box_style == "slashes":
 		text_box = build_textbox_slashes(text,center_text,min_struct_width, min_struct_length)
-	elif box_style == "moo":
+	elif (box_style == "moo" or box_style == "moobox"):
 		text_box = build_textbox_moo(text,center_text,min_struct_width, min_struct_length)
 	elif box_style == "Celegance":
 		text_box = build_textbox_Celegance(text,center_text,min_struct_width, min_struct_length)
@@ -1376,6 +1374,7 @@ printbox(get_box(box_style, comment_mark, use_short_comments, center_text, text_
 # --> Add more art, particularly from Code/Tools/ascii.h
 # --> Write more headers in big font 
 # --> fix the inner dot width in duckbox
+# --> fix the #moo box
 
 #####################################################
 #    _____ _____  ______ _____ _____ _______ _____  #
