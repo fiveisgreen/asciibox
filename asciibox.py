@@ -30,29 +30,29 @@
 #Put text here to be made into a box
 longtext = \
 """
-   _____ _____  ______ _____ _____ _______ _____ 
-  / ____|  __ \|  ____|  __ \_   _|__   __/ ____|
- | |    | |__) | |__  | |  | || |    | | | (___  
- | |    |  _  /|  __| | |  | || |    | |  \___ \ 
- | |____| | \ \| |____| |__| || |_   | |  ____) |
-  \_____|_|  \_\______|_____/_____|  |_| |_____/ 
-                                                 
-                                                 
+  ____  ____  ______         __   ___   ___      ___ 
+ /    ||    \|      |       /  ] /   \ |   \    /  _]
+|  o  ||  D  )      |      /  / |     ||    \  /  [_ 
+|     ||    /|_|  |_|     /  /  |  O  ||  D  ||    _]
+|  _  ||    \  |  |      /   \_ |     ||     ||   [_ 
+|  |  ||  .  \ |  |      \     ||     ||     ||     |
+|__|__||__|\_| |__|       \____| \___/ |_____||_____|
+                                                     
 """
 
-box_style = "hashbox" 		#This determins which type of box you get. See __box_styles, __Gallery
+box_style = "duckbox" 		#This determines which type of box you get. See __box_styles, __Gallery
 
-centering = "left" 			#opetions: "center"=centered text with padding, "left"=left with padding, "none"
+centering = "center" 			#options: "center"=centered text with padding, "left"=left with padding, "none"
 N_tabs_before_comment_mark = 0		#number of tabs in front of everything, including comment marks
-N_quadspaces_before_comment_mark = 0  	#number of 4_space indentings in front of everything, including comment mark
-N_tabs_after_comment_mark = 0		#number of tabs after comment mark, but before the art. Use to create white space to the left of the art.
+N_quadspaces_before_comment_mark = 0  	#number of 4_space indenting in front of everything, including comment mark
+N_tabs_after_comment_mark = 1		#number of tabs after comment mark, but before the art. Use to create white space to the left of the art.
 
-comment_style = "none" 		#Viable options: "none", "Cshort","Clong", "shell"="python"="pyshort", "pylong", "latex", "custom"
+comment_style = "python" 		#Viable options: "none", "Cshort","Clong", "shell"="python"="pyshort", "pylong", "latex", "custom"
 #for use with "custom":
 custom__comment_mark = "#"      	
 custom__use_short_comments = True 	#false makes it long comment style like /*...*/, short comments makes inline comments like //
 
-min_struct_width = 0 			#Minimum values for the width and length of the printed structure. Use these to add white space padding 
+min_struct_width = 68 			#Minimum values for the width and length of the printed structure. Use these to add white space padding 
 min_struct_length = 0			#or to just make a structure the size you want.
 
 ####################################################################################################################################
@@ -445,7 +445,7 @@ def add_comments(text_box, comment_mark, True_short__False_long = True): #WAD
 	#tacks comments onto text_box.
 	#If True_short__False_long, stick comment mark in front of each line. 
 	#else, wrap it in long comments. 
-	#For C-style comments, set comment mark to either '/*' or '*/' and this function will handel it. 
+	#For C-style comments, set comment mark to either '/*' or '*/' and this function will handle it. 
 	if True_short__False_long:
 		for i in xrange(len(text_box)):# for line in text_box:
 			text_box[i] = comment_mark + text_box[i] #new_text_box.append(comment_mark + line)
@@ -483,12 +483,12 @@ def put_A_next_to_B(A,B,space_string):
 		
 		
 def space_pad(text, n_left=1, n_right=1, fillchar = ' '): #wad
-	#tacks space to the left and right of everyline, modifying the origional text.
+	#tacks space to the left and right of every line, modifying the original text.
 	for i in xrange(len(text)):# for line in text:
 		text[i] = fillchar*n_left + text[i] + fillchar*n_right
 
 def left_justify(text, fillchar = ' '): #wad
-	#adds space to the left of the text, making the line lengths all the same. modifies the origional object.
+	#adds space to the left of the text, making the line lengths all the same. modifies the original object.
 	mw = max_width(text)
 	for i in xrange(len(text)): 
 		diff = mw-len(text[i]) 
@@ -506,7 +506,7 @@ def center_justify(text, fillchar = ' '): #wad
 			text[i] = left_diff*fillchar + text[i] + right_diff*fillchar 
 
 def line_pad(text, n_lines_to_add, max_width_ = -1, fillchar = ' ', T_top__F_center=False):
-	#inserts lines into text, modifying the origional object
+	#inserts lines into text, modifying the original object
 	if max_width_ == -1:
 		max_width_ = max_width(text)
 	text_lines = len(text)
@@ -592,23 +592,23 @@ class simple_box(box):
 		for Lline, eline, Rline in zip(self.Dn_left_corner, self.Bot_element, self.Dn_rite_corner):
 			border.append(Lline + n_elements*eline + Rline)
 		return border#, remainder
-	def make_left_border(self,text_hite):
+	def make_left_border(self,text_height):
 		h_element = len(self.Left_element)
 		if h_element == 0:
 			return [""],0
-		n_elements = int(math.ceil(float(text_hite)/h_element)	)
-		remainder = n_elements*h_element - text_hite
+		n_elements = int(math.ceil(float(text_height)/h_element))
+		remainder = n_elements*h_element - text_height
 		border = []
 		for i in xrange(n_elements):
 			for line in self.Left_element:
 				border.append(line)	
 		return border, remainder
-	def make_rite_border(self,text_hite):
+	def make_rite_border(self,text_height):
 		h_element = len(self.Rite_element)
 		if h_element == 0:
 			return [""]
-		n_elements = int(math.ceil(float(text_hite)/h_element))
-		#remainder = n_elements*h_element - text_hite
+		n_elements = int(math.ceil(float(text_height)/h_element))
+		#remainder = n_elements*h_element - text_height
 		border = []
 		for i in xrange(n_elements):
 			for line in self.Rite_element:
@@ -652,16 +652,34 @@ class simple_box(box):
 		for line in bottom_border:
 			box_text.append(line)
 		return box_text
-
-###################################################################################
-#       ___       ______   __________      ______   ______    _______   _______   #
-#      /   \     |   _  \ |          |    /      | /  __  \  |       \ |   ____|  #
-#     /  ^  \    |  |_)  |`---|  |---`   |  ,----'|  |  |  | |  .--.  ||  |__     #
-#    /  /_\  \   |      /     |  |       |  |     |  |  |  | |  |  |  ||   __|    #
-#   /  _____  \  |  |\  \-.   |  |       |  `----.|  `--'  | |  '--'  ||  |____   #
-#  /__/     \__\ | _| `.__|   |__|        \______| \______/  |_______/ |_______|  #
-#                                                                                 #
-#__Art_Code########################################################################
+#	....................................................................................................
+#	:      ,~~.          ,~~.          ,~~.          ,~~.          ,~~.          ,~~.          ,~~.    :
+#	:     (  6 )-_,     (  6 )-_,     (  6 )-_,     (  6 )-_,     (  6 )-_,     (  6 )-_,     (  6 )-_,:
+#	:(\___ )=='-'  (\___ )=='-'  (\___ )=='-'  (\___ )=='-'  (\___ )=='-'  (\___ )=='-'  (\___ )=='-'  :
+#	: \ .   ) )     \ .   ) )     \ .   ) )     \ .   ) )     \ .   ) )     \ .   ) )     \ .   ) )    :
+#	:  \ `-' /       \ `-' /       \ `-' /       \ `-' /       \ `-' /       \ `-' /       \ `-' /     :
+#	: ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~':
+#	:      ,~~.    ......................................................................      ,~~.    :
+#	:     (  9 )-_,:                                                                    :     (  9 )-_,:
+#	:(\___ )=='-'  :                                                                    :(\___ )=='-'  :
+#	: \ .   ) )    :         ____  ____  ______         __   ___   ___      ___         : \ .   ) )    :
+#	:  \ `-' /     :        /    ||    \|      |       /  ] /   \ |   \    /  _]        :  \ `-' /     :
+#	:   `~j-'      :       |  o  ||  D  )      |      /  / |     ||    \  /  [_         :   `~j-'      :
+#	:     '=:      :       |     ||    /|_|  |_|     /  /  |  O  ||  D  ||    _]        :     '=:      :
+#	:      ,~~.    :       |  _  ||    \  |  |      /   \_ |     ||     ||   [_         :      ,~~.    :
+#	:     (  9 )-_,:       |  |  ||  .  \ |  |      \     ||     ||     ||     |        :     (  9 )-_,:
+#	:(\___ )=='-'  :       |__|__||__|\_| |__|       \____| \___/ |_____||_____|        :(\___ )=='-'  :
+#	: \ .   ) )    :                                                                    : \ .   ) )    :
+#	:  \ `-' /     :                                                                    :  \ `-' /     :
+#	:   `~j-'      :                                                                    :   `~j-'      :
+#	:     '=:      :....................................................................:     '=:      :
+#	:      ,~~.          ,~~.          ,~~.          ,~~.          ,~~.          ,~~.          ,~~.    :
+#	:     (  6 )-_,     (  6 )-_,     (  6 )-_,     (  6 )-_,     (  6 )-_,     (  6 )-_,     (  6 )-_,:
+#	:(\___ )=='-'  (\___ )=='-'  (\___ )=='-'  (\___ )=='-'  (\___ )=='-'  (\___ )=='-'  (\___ )=='-'  :
+#	: \ .   ) )     \ .   ) )     \ .   ) )     \ .   ) )     \ .   ) )     \ .   ) )     \ .   ) )    :
+#	:  \ `-' /       \ `-' /       \ `-' /       \ `-' /       \ `-' /       \ `-' /       \ `-' /     :
+#	: ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~' ~'`~'`~'`~`~':
+#       :__Art_Code........................................................................................:
 
 def build_textbox_single_element(text, center_text,min_struct_width, min_struct_length, ulcorner, fill_char = ' '): 
 	box_obj = simple_box()
@@ -1262,6 +1280,8 @@ def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, 
 		text_box = build_textbox_gingerbread(text,center_text,min_struct_width, min_struct_length)
 	elif box_style == "ducks":
 		text_box = build_textbox_ducks(text,center_text,min_struct_width, min_struct_length)
+	elif box_style == "duckbox":
+		text_box = build_textbox_ducks(text,center_text,min_struct_width, min_struct_length)
 	elif box_style == "bracketbox":
 		text_box = build_textbox_bracketbox(text,center_text,min_struct_width, min_struct_length)
 	elif box_style == "slashfield":
@@ -1304,7 +1324,7 @@ def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, 
 	elif box_style == "fancy3":
 		text_box = build_textbox_fancy3(text,center_text,min_struct_length)
 	else: 
-		print "Error! I don't recognise box_name ", box_style
+		print "Error! I don't recognize box_name ", box_style
 		return
 	#append comment marks in front of it
 	add_comments(text_box, comment_mark, True_short__False_long)
@@ -1340,7 +1360,7 @@ comment_mark =  comment_mark_dict[comment_style][0] + N_tabs_after_comment_mark*
 indenting_string = N_tabs_before_comment_mark*'\t' + N_quadspaces_before_comment_mark*'    '
 
 #make and print the box
-printbox(get_box(box_style,comment_mark, use_short_comments, center_text, text_list,  indenting_string, min_struct_width, min_struct_length))
+printbox(get_box(box_style, comment_mark, use_short_comments, center_text, text_list,  indenting_string, min_struct_width, min_struct_length))
 
 ###################################################################
 #   _______ ____  _____   ____       _      _____  _____ _______  #
@@ -1356,6 +1376,7 @@ printbox(get_box(box_style,comment_mark, use_short_comments, center_text, text_l
 # --> The Beginning is needs more art.
 # --> Add more art, particularly from Code/Tools/ascii.h
 # --> Write more headers in big font 
+# --> fix the inner dot width in duckbox
 
 #####################################################
 #    _____ _____  ______ _____ _____ _______ _____  #
@@ -1390,6 +1411,6 @@ printbox(get_box(box_style,comment_mark, use_short_comments, center_text, text_l
 #              _x-*v+"     9    0   "b    "_    "p   _0   `&    ___       d_
 #
 # 
-# Most art is sourced from Christopher Johnson's webpate https://asciiart.website//index.php
-# Art-text is produced by Patrick Gillespie's ASCII Art Generator; see __Hypnotoad for the link 
+# Most art is sourced from Christopher Johnson's webpage https://asciiart.website//index.php
+# Art-text is produced by Patrick Gillespie's ASCII Art Generator; see __Hypnotoad for the link.
 ##########################################################################################
