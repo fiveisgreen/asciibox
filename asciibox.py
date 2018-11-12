@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# Instructions: First choose settings and insert textbox text in the control panel. Then run from the terminal:
+#               $ python asciibox.py
+
 ###############################################################
 # ################### Table of Contents ##################### #
 #                                                             #
