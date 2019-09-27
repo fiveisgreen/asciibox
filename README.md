@@ -17,6 +17,7 @@ Open up asciibox.py and go to the control panel.
 * You can set a minimum size to the output art for most boxes using the variables min_struct_width and min_struct_length. This is particularly useful if you are making a structure instead of a text box. But it can also be used to force whitespace around text in a text box. 
 
 That's everything you should need to control and run this program. 
+:-)
 
 ##Run 
 Once you've set the controls, run it from the terminal:
