@@ -15,6 +15,7 @@
 # __endart                                                    #
 # __switch            A long switch that interprets box_style #
 # __Machinery         Some shady robots                       #
+# __argparse          Controlls commandline interface         #
 # __Execution         Where the program execution starts.     #
 # __TODO_list         A place to plan improvements.           #
 # __Credits           Who made this thing.                    #
@@ -417,11 +418,103 @@ centering_dict = {"center":1, "left":0, "none":2}
 #  |  |  |  |  /  _____  \ |  `----.|  |  |  | |  | |  |\   | |  |____ |  |\  \-.   |  |      #
 #  |__|  |__| /__/     \__\ \______||__|  |__| |__| |__| \__| |_______|| _| `.__|   |__|      #
 #                                                                                             #
-#__Machinery###################################################################################
+#__Machinery# __argparse#######################################################################
 
 import os,sys
 import string
 import math
+import argparse
+
+parser = argparse.ArgumentParser(description='''A tool for making beautiful ascii text boxes.
+Besides command line options you may edit the default settings in the script's '__Control_Pannel' and then run without command line arguments.''', epilog = '''Most art is sourced from Christopher Johnson's webpage: https://asciiart.website//index.php  
+Also see Patrick Gillespie's ASCII Art Generator: http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20''',prog="AsciiBox")
+
+parser.add_argument("-g","--gallery", help="prints the gallery of styles to choose from, then exits.", action="store_true") #ok
+parser.add_argument("-l","--list", help="prints Lists options for box styles (-s, --style). Then exits.", action="store_true")
+parser.add_argument("-t","--text", help="text to go into textbox. Argument must be in quotes. Overrides --file.", default = longtext, nargs='*') #may be better used as nargs=argparse.REMAINDER
+parser.add_argument("-f","--file", help="file from which to read textbox text.", default="asciibox.py")
+parser.add_argument("-i","--interactive", help="Enter text in a stdin interactive session.", action="store_true")
+parser.add_argument("-s", "--style", help="Defines the box style. Use --list (-l) to list options.", default = box_style)
+#parser.add_argument("-m", "--comment", choices=['none','cshort', 'Cshort', 'clong', 'Clong', 'shell', 'python','pyshort', 'pylong', 'latex', 'custom'], help="Defines comment style. Options: 'none', 'Cshort'=//, 'Clong'=/*...*/, 'shell'='python'='pyshort'=\#, 'pylong'=tripple quotes, 'latex'=%, 'custom'. If 'custom' is used, a second arguement for the comment mark can be provided.", default = comment_style)
+parser.add_argument("-m", "--comment", choices=['none','cshort', 'Cshort', 'clong', 'Clong', 'shell', 'python','pyshort', 'pylong', 'latex', 'custom'], help=r"Defines comment style. Options: 'none', 'Cshort'=//, 'Clong'=/*...*/, 'shell'='python'='pyshort'=\#, 'pylong'=tripple quotes, 'latex'=percent_sign, 'custom'. If 'custom' is used, a second arguement for the comment mark can be provided.", default = comment_style)
+parser.add_argument("custom_comment", help="When using comment (-m) = custom, this additional argument specifies the custom comment mark.", default = custom__comment_mark , nargs='?')
+parser.add_argument("-c", "--centering", choices=["center", "left", "none"], help="Defines text centering. Options: 'none','center' centers text with space padding, 'left' aligns left with left space padding. ", default=centering)
+parser.add_argument("-b", "--beforetabs", type=int, help="number of tabs in front of everything, including comment marks ", default =N_tabs_before_comment_mark)
+parser.add_argument("-B", "--beforequads", type=int, help="number of 4_space indenting in front of everything, including comment mark", default = N_quadspaces_before_comment_mark)
+parser.add_argument("-a", "--aftertabs", type=int, help="number of tabs after comment mark, but before the art. Use to create white space to the left of the art.", default = N_tabs_after_comment_mark )
+parser.add_argument("-x", "--width", type=int, help="Minimum values for the width of the printed structure. Use these to add white space padding", default = min_struct_width )
+parser.add_argument("-y", "--length", type=int, help="Minimum values for the length of the printed structure. Use these to add white space padding", default = min_struct_length)
+parser.add_argument("-v", "--version", action='version', version='%(prog)s 0.5')
+
+args = parser.parse_args()
+
+if args.list:
+	with open(sys.argv[0]) as thisfile:
+		found_start = False
+		found_end = False
+		for line in thisfile.readlines():
+			if not found_start and "Viable __box_styles" in line:
+				found_start = True
+			elif "__end_box_styles Actual" in line:
+				found_end = True	
+				break
+			elif found_start and not found_end:
+				if line.strip()[0] != '#':
+					print( line.rstrip('\n') )
+		if not found_end:
+			print("Styles list not found")
+	sys.exit()
+
+if args.gallery:
+	with open(sys.argv[0]) as thisfile:
+		found_start = False
+		found_end = False
+		for line in thisfile.readlines():
+			if not found_start and "__Gallery#######" in line:
+				found_start = True
+			elif "__endgallery Actual" in line:
+				found_end = True	
+				break
+			elif found_start and not found_end:
+				print( line.rstrip('\n') )
+		if not found_end:
+			print("Gallery not found")
+
+	sys.exit()
+
+if args.text != longtext: #if -t option is used. Override --file/-f
+	longtext = ' '.join(args.text)
+elif args.file != "asciibox.py":
+	with open(args.file) as fin:
+		longtext = (''.join(fin.readlines())).rstrip('\n')
+elif args.interactive:
+	print("Type or paste textbox text. Type .q and enter to exit\n\n")
+	temp = ""
+	while True:
+		line = sys.stdin.readline()
+		if line.strip() == ".q":
+			break	
+		temp = temp + line
+
+	temp = temp.rstrip('\n')
+	longtext = temp
+	print("\n\n")
+	
+comment_style = args.comment
+if comment_style == "custom":
+	custom__comment_mark = args.custom_comment
+
+#Set options informed by command line options
+centering = args.centering
+centering = centering.lower()
+N_tabs_before_comment_mark = args.beforetabs
+N_quadspaces_before_comment_mark = args.beforequads
+N_tabs_after_comment_mark = args.aftertabs
+min_struct_width = args.width
+min_struct_length = args.length
+box_style = args.style
+
+#__Machinery=====================================================================
 
 def long_text_to_array(thestring):
 	return thestring.split('\n')
@@ -1344,14 +1437,13 @@ def get_box(box_style ,comment_mark, True_short__False_long, center_text, text, 
 #[comment mark, True = use short comment; False = use long comments
 comment_mark_dict = {\
 "none":["",True], \
-"Cshort": ["//",True], "Clong": ["/*",False], \
+"cshort": ["//",True], "clong": ["/*",False], \
 "shell": ["#",True], \
 "python": ["#",True], "pyshort": ["#",True], "pylong": ['"""',False], \
 "latex": ["%",True],\
 "custom":[custom__comment_mark,custom__use_short_comments]}
 
 text_list = long_text_to_array(longtext)
-
 center_text = centering_dict[centering]
 box_style.strip('#')
 box_style = box_style.lower()
@@ -1372,8 +1464,7 @@ printbox(get_box(box_style, comment_mark, use_short_comments, center_text, text_
 #                                                                 #
 #__TODO_list#######################################################
 
-# --> Enable this to accept an input file.
-# --> The Beginning is needs more art.
+# --> The Beginning needs more art.
 # --> Add more art, particularly from Code/Tools/ascii.h
 # --> Write more headers in big font 
 # --> fix the inner dot width in duckbox
