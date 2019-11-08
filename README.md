@@ -1,8 +1,7 @@
 ##Description
-This is a tool for generating pretty ascii boxes around text to decorate your code and other artistic ascii structures. Its output only looks right on fixed width fonts such as Courier, Andale Mono, Menlo Regular, and so on. You only ever need one file: asciibox.py. 
+This is a tool for generating pretty ascii boxes around text to decorate your code and other artistic ascii structures. Its output only looks right on fixed width fonts such as Courier, Andale Mono, Menlo Regular, and so on. You only ever need one file: asciibox3.py (for python3. For python 2 use asciibox.py). 
 
-##User Interface
-Open up asciibox.py and go to the control panel. 
+##Useage Option 1: Open up asciibox3.py and go to the _control_panel. 
 
 * Set the type of box you want by setting the "box_style" variable. You can find a list of available box styles in the __box_styles section. You can also go to the __Gallery for a more visual way of looking through box styles. In the Gallery, box styles are refered to with a hashtag, but you don't have to write the # in the box_style variable. 
 
@@ -16,12 +15,52 @@ Open up asciibox.py and go to the control panel.
 
 * You can set a minimum size to the output art for most boxes using the variables min_struct_width and min_struct_length. This is particularly useful if you are making a structure instead of a text box. But it can also be used to force whitespace around text in a text box. 
 
+#Run 
+Once you've set the controls, run it from the terminal:
+$ python asciibox3.py
+
+#Usage Option 2: Command line options
+There are command line options giving accesss to everything on the control pannel. 
+
+Ways to find and set the box style:
+* -g (--gallery) Display the gallery. This helps in choosing a box style
+
+* -l (--list) Prints a list of box styles
+
+* -s (--style) Specifies the box style. 
+
+Ways to read in text
+* -t [textbox text] Enter textbox text as command line arguments. Text can be in quotes or not, either way. This overrides -f.
+
+* -i (--interactive) Enter textbox text in a stdin interactive session. Exit the interactive session by writing .q on a new line, then enter.
+
+* -f (--file) [filename] Read textbox text from file. 
+
+* -m (--comment) Defines comment style. Options (case insensitive): 'none' applies no comment mark. 'Cshort' gives singe line C/C++/Java style comments. 'Clong' gives the /*..*/ multiline comments. 'shell'='python'='pyshort' all give pound sign comments. 'pylong' puts text in tripple, 'latex' gives percent sign comments. 'custom' [CustomCommentMark] allows you to specify any text as a comment-mark-like prefix. Ex: --custom '@'.
+
+* -c (--centering) Options: Defines text centering within the box. Options: 'none','center' centers text with space padding, 'left' aligns left with left space padding.
+
+* -b (--beforetabs) [int] Number of tabs in front of everything, including comment marks
+
+* -B (--beforequads) [int] Number of quads (sets of 4 space) indenting in front of everything, including comment mark
+
+* -a (--aftertabs) [int] Number of tabs after comment mark, but before the art. Use to create white space to the left of the art.
+
+* -x (--width) [int] Minimum values for the width of the printed structure. Use these to add white space padding
+
+* -y (--length) [int] Minimum values for the length of the printed structure. Use these to add white space padding
+
+
 That's everything you should need to control and run this program. 
 :-)
 
-##Run 
-Once you've set the controls, run it from the terminal:
+#Run 
+$./asciibox3.py -g
+$./asciibox3.py -l
+$./asciibox3.py -s hashbox -t weeeee -y5
+$./asciibox3.py -s 4dotbox -f foo.txt
 
-$ python asciibox.py
+##Python Compatability
+asciibox.py was built for Python 2.7.10, but and should work in most Python2 versions. If not, replace xrange with range.
+asciibox.py was built for Python 3.7.3.
 
-This is built for Python 2.7.10, but should work in most Python2 versions. 
