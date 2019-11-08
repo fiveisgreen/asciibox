@@ -115,6 +115,7 @@ min_struct_length = 0			#or to just make a structure the size you want.
 #structures
 #hashline
 #slashline
+#__end_box_styles Actual
 
 #Prepare and process user interface 
 centering_dict = {"center":1, "left":0, "none":2}
@@ -406,7 +407,7 @@ centering_dict = {"center":1, "left":0, "none":2}
 	#	                                    `-._.-'                                    
 
 
-#__endgallery
+#__endgallery Actual
 
 ###############################################################################################
 #   ___  ___       ___       ______  __    __   __   __   __   _______  ______  ____    ____  #

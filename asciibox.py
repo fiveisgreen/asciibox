@@ -115,6 +115,7 @@ min_struct_length = 0			#or to just make a structure the size you want.
 #structures
 #hashline
 #slashline
+#__end_box_styles Actual
 
 #Prepare and process user interface 
 centering_dict = {"center":1, "left":0, "none":2}
@@ -406,7 +407,7 @@ centering_dict = {"center":1, "left":0, "none":2}
 	#	                                    `-._.-'                                    
 
 
-#__endgallery
+#__endgallery Actual
 
 ###############################################################################################
 #   ___  ___       ___       ______  __    __   __   __   __   _______  ______  ____    ____  #
@@ -691,7 +692,7 @@ def build_textbox_single_element(text, center_text,min_struct_width, min_struct_
 	box_obj.Bot_element = box_obj.Top_element
 	box_obj.Left_element = box_obj.Up_left_corner
 	box_obj.Rite_element = box_obj.Left_element
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -722,7 +723,7 @@ def build_textbox_Celegance(text, center_text,min_struct_width, min_struct_lengt
 	box_obj.Bot_element = box_obj.Top_element
 	box_obj.Left_element = [" *"]
 	box_obj.Rite_element = ["* "]
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -737,7 +738,7 @@ def build_textbox_slashfield(text, center_text,min_struct_width, min_struct_leng
 	box_obj.Bot_element = box_obj.Top_element
 	box_obj.Left_element = box_obj.Up_left_corner
 	box_obj.Rite_element = box_obj.Left_element
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -753,7 +754,7 @@ def build_textbox_dotbox(text, center_text,min_struct_width, min_struct_length, 
 	box_obj.Bot_element = box_obj.Top_element
 	box_obj.Left_element = [':']
 	box_obj.Rite_element = box_obj.Left_element
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -774,7 +775,7 @@ def build_textbox_gingerbread(text, center_text,min_struct_width, min_struct_len
 	gbread_box.Bot_element = gbread_box.Top_element
 	gbread_box.Left_element = gbread_box.Up_left_corner
 	gbread_box.Rite_element = gbread_box.Left_element
-        gbread_box.min_length_interior = 0
+	gbread_box.min_length_interior = 0
 	gbread_box.min_width_interior = 0
 	gbread_box.pad_text = False 
 	inner_text_box = build_textbox_dotbox(text,center_text,\
@@ -809,7 +810,7 @@ def build_textbox_ducks(text, center_text,min_struct_width, min_struct_length): 
 "   `~j-'      ",\
 "     '=:      "]
 	gbread_box.Rite_element = gbread_box.Left_element
-        gbread_box.min_length_interior = 0
+	gbread_box.min_length_interior = 0
 	gbread_box.min_width_interior = 0
 	gbread_box.pad_text = False 
 	inner_text_box = build_textbox_dotbox(text,center_text,\
@@ -845,7 +846,7 @@ def build_textbox_doubleline(text, center_text,min_struct_width, min_struct_leng
 	box_obj.Bot_element = box_obj.Top_element
 	box_obj.Left_element = ["| |"]
 	box_obj.Rite_element = box_obj.Left_element
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -860,7 +861,7 @@ def build_textbox_signpost(text, center_text,min_struct_width, min_struct_length
 	box_obj.Bot_element = ["_","_"," "]
 	box_obj.Left_element = ["   | |"]
 	box_obj.Rite_element = ["| |   "]
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -875,7 +876,7 @@ def build_textbox_celtic3(text, center_text,min_struct_width, min_struct_length)
 	box_obj.Bot_element = [" "," ","_"," ","_"]
 	box_obj.Left_element = ["    |   "]
 	box_obj.Rite_element = ["   |   "]
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -891,7 +892,7 @@ def build_textbox_4dotbox(text, center_text,min_struct_width, min_struct_length)
 	box_obj.Bot_element = box_obj.Top_element
 	box_obj.Left_element = ["::::"]
 	box_obj.Rite_element = box_obj.Left_element
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -906,7 +907,7 @@ def build_textbox_slashes(text, center_text,min_struct_width, min_struct_length)
 	box_obj.Bot_element = ["/ \ "]
 	box_obj.Left_element = ["\ ","/ "]
 	box_obj.Rite_element = ["/ ","\ "]
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -976,7 +977,7 @@ def build_textbox_butterflies(text, center_text,min_struct_width, min_struct_len
   " /.:::/\/\:::.\  ",\
   " \(@)/    \(@)/  ",\
   "_ `-'.    .`-' _ "]
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -1011,7 +1012,7 @@ def build_textbox_scroll1(text, center_text,min_struct_width,min_struct_length):
 	for i in xrange(stretch):
 		box_obj.Left_element.append(" |       |")
 		box_obj.Rite_element.append("|       |")
-        box_obj.min_length_interior = 0
+	box_obj.min_length_interior = 0
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -1057,7 +1058,7 @@ def build_textbox_scroll2(text, center_text,min_struct_width,min_struct_length):
 		box_obj.Left_element.append(" |       |")
 		box_obj.Rite_element.append("      |")
 	box_obj.Rite_element.append("     /")
-        box_obj.min_length_interior = 0
+	box_obj.min_length_interior = 0
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
@@ -1073,7 +1074,7 @@ def build_textbox_moo(text, center_text,min_struct_width, min_struct_length): #m
 	box_obj.Bot_element = box_obj.Top_element
 	box_obj.Left_element = ["O","O","*","*","M"]
 	box_obj.Rite_element = box_obj.Left_element
-        box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
+	box_obj.min_length_interior = min_struct_length - len( box_obj.Top_element) - len(box_obj.Bot_element)
 	box_obj.min_width_interior = min_struct_width  -  max_width(box_obj.Left_element) - max_width(box_obj.Rite_element)
 	return box_obj.build_box(text, center_text) 
 
