@@ -57,7 +57,7 @@ min_struct_length = 0			#or to just make a structure the size you want.
 ####################################################################################################################################
 ##             ,'``.._   ,'``.                                                                                                    ##
 ##            :,--._:)\,:,._,.:                Hypnotoad wants you to check out Patrick Gillespie's ASCII Art Generator           ## 
-##            :`--,''   :`...';\             http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20         ##
+##            :`--,''   :`...';\      http://patorjk.com/software/taag/#p=display&c=c%2B%2B&f=Small%20Slant&t=Type%20Something%20 ##
 ##             `,'       `---'  `.                                 All Glory to the Hypnotoad!                                    ##
 ##             /                 :                                                                                                ##
 ##            /                   \                                                                                               ##
@@ -427,7 +427,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='''A tool for making beautiful ascii text boxes.
 Besides command line options you may edit the default settings in the script's '__Control_Pannel' and then run without command line arguments.''', epilog = '''Most art is sourced from Christopher Johnson's webpage: https://asciiart.website//index.php  
-Also see Patrick Gillespie's ASCII Art Generator: http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20''',prog="AsciiBox")
+Also see Patrick Gillespie's ASCII Art Generator: http://patorjk.com/software/taag/#p=display&c=c%2B%2B&f=Small%20Slant&t=Type%20Something%20''',prog="AsciiBox")
 
 parser.add_argument("-g","--gallery", help="prints the gallery of styles to choose from, then exits.", action="store_true") #ok
 parser.add_argument("-l","--list", help="prints Lists options for box styles (-s, --style). Then exits.", action="store_true")
