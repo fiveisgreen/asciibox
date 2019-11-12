@@ -15,7 +15,7 @@ This is a tool for generating pretty ascii boxes around text to decorate your co
 
 * You can set a minimum size to the output art for most boxes using the variables min_struct_width and min_struct_length. This is particularly useful if you are making a structure instead of a text box. But it can also be used to force whitespace around text in a text box. 
 
-# Run 
+### Run 
 Once you've set the controls, run it from the terminal:
 $ python asciibox3.py
 
@@ -30,7 +30,7 @@ Ways to find and set the box style:
 * -s (--style) Specifies the box style. 
 
 Ways to read in text
-* -t [textbox text] Enter textbox text as command line arguments. Text can be in quotes or not, either way. This overrides -f.
+* -t (--text) [textbox text] Enter textbox text as command line arguments. Text can be in quotes or not, either way. This overrides -f.
 
 * -i (--interactive) Enter textbox text in a stdin interactive session. Exit the interactive session by writing .q on a new line, then enter.
 
@@ -54,7 +54,7 @@ Ways to read in text
 That's everything you should need to control and run this program. 
 :-)
 
-# Run 
+### Run 
 $./asciibox3.py -g
 $./asciibox3.py -l
 $./asciibox3.py -s hashbox -t weeeee -y5
