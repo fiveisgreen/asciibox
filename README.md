@@ -1,6 +1,8 @@
 ## Description
 ![Description_img](/images/Description_signpost.png)
 
+Have a look through the [Gallery](https://github.com/fiveisgreen/asciibox/blob/405cfb94ffce55853db93fe5a8fb4aa2f45d1e32/asciibox3.py#L124-L408)
+
 ## Useage Option 1: Open up asciibox3.py and go to the _control_panel. 
 
 * Set the type of box you want by setting the "box_style" variable. You can find a list of available box styles in the __box_styles section. You can also go to the __Gallery for a more visual way of looking through box styles. In the Gallery, box styles are refered to with a hashtag, but you don't have to write the # in the box_style variable. 
