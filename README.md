@@ -1,6 +1,4 @@
 ## Description
-This is a tool for generating pretty ascii boxes around text to decorate your code and other artistic ascii structures. Its output only looks right on fixed width fonts such as Courier, Andale Mono, Menlo Regular, and so on. You only ever need one file: asciibox3.py (for python 3. For python 2 use asciibox.py). 
-
 ![Description_img](/images/Description_signpost.png)
 
 ## Useage Option 1: Open up asciibox3.py and go to the _control_panel. 
@@ -39,7 +37,7 @@ Ways to read in text
 
 * -i (--interactive) Enter textbox text in a stdin interactive session. Exit the interactive session by writing .q on a new line, then enter.
 
-* -f (--file) [filename] Read textbox text from file. 
+* -f (--file) [filename] Read textbox text from file. Make sure to manually enter carriage returns between lines. 
 
 * -m (--comment) Defines comment style. Options (case insensitive): 'none' applies no comment mark. 'Cshort' gives singe line C/C++/Java style comments. 'Clong' gives the /*..*/ multiline comments. 'shell'='python'='pyshort' all give pound sign comments. 'pylong' puts text in tripple, 'latex' gives percent sign comments. 'custom' [CustomCommentMark] allows you to specify any text as a comment-mark-like prefix. Ex: --custom '@'.
 
