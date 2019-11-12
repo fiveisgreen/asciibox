@@ -1,6 +1,8 @@
 ## Description
 This is a tool for generating pretty ascii boxes around text to decorate your code and other artistic ascii structures. Its output only looks right on fixed width fonts such as Courier, Andale Mono, Menlo Regular, and so on. You only ever need one file: asciibox3.py (for python 3. For python 2 use asciibox.py). 
 
+![Description_img](/images/Description_signpost.png)
+
 ## Useage Option 1: Open up asciibox3.py and go to the _control_panel. 
 
 * Set the type of box you want by setting the "box_style" variable. You can find a list of available box styles in the __box_styles section. You can also go to the __Gallery for a more visual way of looking through box styles. In the Gallery, box styles are refered to with a hashtag, but you don't have to write the # in the box_style variable. 
@@ -18,6 +20,9 @@ This is a tool for generating pretty ascii boxes around text to decorate your co
 ### Run 
 Once you've set the controls, run it from the terminal:
 $ python asciibox3.py
+
+
+![Divider](/images/Floral_divider.PNG)
 
 # Usage Option 2: Command line options
 There are command line options giving accesss to everything on the control pannel. 
