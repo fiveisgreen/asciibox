@@ -61,8 +61,11 @@ That's everything you should need to control and run this program.
 
 ### Run 
 $./asciibox3.py -g
+
 $./asciibox3.py -l
+
 $./asciibox3.py -s hashbox -t weeeee -y5
+
 $./asciibox3.py -s 4dotbox -f foo.txt
 
 ## Python Compatability
