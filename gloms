@@ -1,0 +1,29 @@
+ENTRY: Efti Font, lines=5,	glom=g1, slant=0, space=1
+ENTRY: Jerusalem, lines=7,	glom=g1, slant=0, space=1
+ENTRY: Small Slant, lines=5	glom=g1, slant=1, space=1
+ENTRY: Slant, lines=6,		glom=g1, slant=1, space=2
+ENTRY: Small, lines=5,		glom=g-1, slant=0, space=1
+ENTRY: Big, lines=8,		glom=g-1, slant=0, space=1
+ENTRY: Standard, lines=6,	glom=g-1, slant=0, space=1
+ENTRY: Ivrit, lines=6,		glom=g-1, slant=0, space=1
+ENTRY: Greek, lines=9,		glom=g-1, slant=0, space=1
+ENTRY: NT Greek, lines=9,	glom=g-2, slant=0, space=1
+ENTRY: 3D-ASCII, lines=10,	glom=g-2, slant=-1, space=8
+ENTRY: Chunky, lines=5,		glom=g-2, slant=0, space=4
+ENTRY: Speed, lines=6,		glom=g-6, slant=1, space=4
+
+
+ENTRY: Doom, lines=8,		glom=g1, slant=0, space=1 
+#Complex glomming ex: Ci prefers i on top and C on bottom.
+ENTRY: Fire font-s, lines=9	glom=g-1, slant=0, space=2 #glom goes + for punctuation
+
+ENTRY: Rounded, lines=7,	glom=g-1, slant=0, space=2 
+#Complicated special rules at collisions. 
+
+
+glom=3 #number of spaces between simple rigid blocks
+glom=w=w0 #collide white space overlaps
+glom=w1 #collide white space overlaps but keep 1 space between non-white space characters
+glom=W #collide white space overlaps, except for caps 
+glom=g0 #glom with at most 1 differences allowed, prefering the letter to the right
+glom=g-2 #glom with at most 2 differences allowed, prefering the letter to the left (except punctuation which keeps right-pref.)
